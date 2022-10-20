@@ -1,0 +1,64 @@
+{
+	"info": {
+		"_postman_id": "1ed744d6-e573-4b71-aa8b-b173a4765d81",
+		"name": "Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21956197"
+	},
+	"item": [
+		{
+			"name": "Google",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}",
+					"host": [
+						"{{URL}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"const jsonData = pm.response.body != null ? pm.response.json() : null;",
+					"",
+					"pm.test('Status code is 200', function () {",
+					"    pm.response.to.have.status(200);",
+					"});",
+					"",
+					"pm.test('No Errors', function () {",
+					"    if(jsonData != null) {",
+					"        console.debug('JSON data returned, verifying no  \"message\" property');",
+					"        pm.expect(jsonData).to.not.have.property('message');",
+					"    } else {",
+					"        console.debug('No JSON data returned, skipping error message check');",
+					"    }",
+					"});"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "https://google.com",
+			"type": "string"
+		}
+	]
+}
