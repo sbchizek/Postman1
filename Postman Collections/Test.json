@@ -1,0 +1,91 @@
+{
+	"info": {
+		"_postman_id": "1ed744d6-e573-4b71-aa8b-b173a4765d81",
+		"name": "Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Google",
+			"id": "c7107f5e-e7f7-4984-96bb-5bd8ca3c7b53",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{URL}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Google1",
+			"id": "a3971cda-c4ab-47de-9d1a-fd82562c02ce",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{URL}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Google1 Copy",
+			"id": "6029b193-1b7e-4773-bef3-8df51f7f277a",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{URL}}"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "f773ca86-3191-499c-9753-eefb445fd0a5",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "8d132e11-18c2-4991-8603-0679e6398992",
+				"type": "text/javascript",
+				"exec": [
+					"const jsonData = pm.response.body != null ? pm.response.json() : null;",
+					"",
+					"pm.test('Status code is 200', function () {",
+					"    pm.response.to.have.status(200);",
+					"});",
+					"",
+					"pm.test('No Errors', function () {",
+					"    if(jsonData != null) {",
+					"        console.debug('JSON data returned, verifying no  \"message\" property');",
+					"        pm.expect(jsonData).to.not.have.property('message');",
+					"    } else {",
+					"        console.debug('No JSON data returned, skipping error message check');",
+					"    }",
+					"});"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "6b025ae2-8e81-4361-b9b4-cd78818e7733",
+			"key": "URL",
+			"value": "https://google.com",
+			"type": "string"
+		}
+	]
+}
